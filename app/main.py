@@ -33,6 +33,9 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+from viv_auth import init_auth
+init_auth(app, engine, Base, get_db, app_name="Productivity Pro")
+
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 def root_dashboard(db: Session = Depends(get_db)):
